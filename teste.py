@@ -12,15 +12,29 @@ def wMark(directory,path,path_logo,horiz,vert,scl):
     lgo = cv2.resize(lgo_img, dim, interpolation = cv2.INTER_AREA)
     lH,lW = lgo.shape[:2]
     ovr = np.zeros((oH,oW,4), dtype="uint8")
-    horiz=int(image.shape[0]*horiz/100)
+    horiz=int(image.shape[1]*horiz/100)
     vert=int(image.shape[0]*vert/100)
     ovr[oH - lH - vert:oH - vert, oW - lW - horiz:oW - horiz] = lgo
     final = image.copy()
-    final = cv2.addWeighted(ovr,0.3,final,1.0,0,final)
-    cv2.imwrite(directory+'teste.jpg', final)
+    final = cv2.addWeighted(ovr,0.4,final,1.0,0,final)
+    cv2.imwrite(directory+path, final)
 
-os.mkdir(os.getcwd()+'/wm')
+
 directory=os.getcwd()+'/wm/'
+if os.path.exists(directory)==False:
+    os.mkdir(os.getcwd()+'/wm')
+
 list_dir=os.listdir()
+logo_path='teste.png'
+scl=10
+horiz=50
+vert=50
+
 for x in list_dir:
-    wMark(directory,x,'teste.png',50,50,10)
+    if logo_path!=x:
+        if '.jpg' in x:
+            wMark(directory,x,logo_path,horiz,vert,scl)
+        elif '.jpeg' in x:
+            wMark(directory,x,logo_path,horiz,vert,scl)
+        elif '.png' in x:
+            wMark(directory,x,logo_path,horiz,vert,scl)
