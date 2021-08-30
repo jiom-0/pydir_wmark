@@ -6,7 +6,7 @@ During the exection, for each image he create a watermarked copy and
 write on 'wm' folder.
 
 + If 'wm' folder already exists with or without files the script 
-continue the normal your execution.
+continue your execution.
 + If has some non image file on the directory, the script just
 ignores and jump for the next file.
 + If the image copy has alreay watermarked on the wm folder,
